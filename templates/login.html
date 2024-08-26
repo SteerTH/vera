@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprobar identidad</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <link rel="stylesheet" href="../static/css/login.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="../static/images/vera.png" alt="Logo" class="Logo">
+    </div>
+    <h1>Comprobar identidad</h1>
+    <div class="video-container">
+        <video id="video"></video>
+    </div>
+    <h2>Presione para escanear el QR</h2>
+    <button id="start-scan" class="start-scan-btn">Escanear</button>
+
+    <script>
+        const video = document.getElementById('video');
+
+        document.getElementById('start-scan').addEventListener('click', () => {
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+                .then(stream => {
+                    video.srcObject = stream;
+                    video.setAttribute('playsinline', true);
+                    video.play();
+        
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    
+                    const scanQRCode = () => {
+                        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                            canvas.width = video.videoWidth;
+                            canvas.height = video.videoHeight;
+                            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                            const qrCode = jsQR(imageData.data, canvas.width, canvas.height, {
+                                inversionAttempts: "dontInvert",
+                            });
+                            
+                            if (qrCode) {
+                                alert(`QR Code detected: ${qrCode.data}`);
+                            
+                                // Almacenar los datos del QR en localStorage
+                                localStorage.setItem('qrData', qrCode.data);
+                            
+                                fetch('/register-qr', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ qr_data: qrCode.data }),
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert("QR Data registered successfully!");
+                                        setTimeout(() => {
+                                            window.location.href = "/static/index.html";
+                                        }, 1000);
+                                    } else {
+                                        alert("Failed to register QR data.");
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert("An error occurred while registering QR data.");
+                                });
+                                
+                                stream.getTracks().forEach(track => track.stop());
+                            } else {
+                                requestAnimationFrame(scanQRCode);
+                            }
+                        } else {
+                            requestAnimationFrame(scanQRCode);
+                        }
+                    };
+        
+                    requestAnimationFrame(scanQRCode);
+                })
+                .catch(err => {
+                    console.error("Error accessing camera:", err);
+                    alert("An error occurred while accessing the camera.");
+                });
+        });
+    </script>
+</body>
+</html>
