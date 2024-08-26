@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boleta de Candidatos</title>
+    <link rel="stylesheet" href="../static/css/candidatos.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="user-profile">
+            <img src="../static/images/user-profile.png" alt="Perfil">
+            <div class="user-info">
+                <span id="user-name"></span>
+                <span id="user-id" class="id"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Recuperar los datos del QR almacenados en localStorage
+        const qrData = localStorage.getItem('qrData');
+
+        if (qrData) {
+            // Asumimos que el QR tiene el formato "Nombre Apellido ID"
+            const [firstName, lastName, id] = qrData.split(' ');
+
+            // Mostrar la información en la página
+            document.getElementById('user-name').textContent = `${firstName} ${lastName}`;
+            document.getElementById('user-id').textContent = `ID: ${id}`;
+        } else {
+            console.error('No QR data found in localStorage');
+        }
+    </script>
+
+
+    <div class="candidatos">
+        <div class="candidato">
+            <h3>Libre</h3>
+            <img src="../static/images/xiomara-castro.png" alt="Xiomara Castro">
+            <h4>Xiomara Castro</h4>
+            <div class="sub-candidatos">
+                <div class="sub-candidato">
+                    <img src="../static/images/enrique-matute.png" alt="Enrique Matute">
+                    <span>Enrique Matute</span>
+                </div>
+                <div class="sub-candidato">
+                    <img src="../static/images/margarita-doblado.png" alt="Margarita Doblado">
+                    <span>Margarita Doblado</span>
+                </div>
+                <div class="sub-candidato">
+                    <img src="../static/images/oscar-montoya.png" alt="Oscar Montoya">
+                    <span>Oscar Montoya</span>
+                </div>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="libre">
+            </div>
+        </div>
+
+        <div class="candidato">
+            <h3>Nacional</h3>
+            <img src="../static/images/tito-asfura.png" alt="Tito Asfura">
+            <h4>Tito Asfura</h4>
+            <div class="sub-candidatos">
+                <div class="sub-candidato">
+                    <img src="../static/images/marco-molina.png" alt="Marco Molina">
+                    <span>Marco Molina</span>
+                </div>
+                <div class="sub-candidato">
+                    <img src="../static/images/jeveth-matute.png" alt="Jeveth Mutute">
+                    <span>Jeveth Mutute</span>
+                </div>
+                <div class="sub-candidato">
+                    <img src="../static/images/teresa-calix.png" alt="Teresa Cálix">
+                    <span>Teresa Cálix</span>
+                </div>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="nacional">
+            </div>
+        </div>
+
+        <div class="candidato">
+            <h3>Salvador de Honduras</h3>
+            <img src="../static/images/salvador-nasralla.png" alt="Salvador Nasralla">
+            <h4>Salvador Nasralla</h4>
+            <div class="sub-candidatos">
+                <div class="sub-candidato">
+                    <img src="../static/images/tomas-hernandez.png" alt="Tomas Hernández">
+                    <span>Tomas Hernández</span>
+                </div>
+                <div class="sub-candidato">
+                    <img src="../static/images/carlos-umana.png" alt="Carlos Umaña">
+                    <span>Carlos Umaña</span>
+                </div>
+                <div class="sub-candidato">
+                    <img src="../static/images/fatima-baide.png" alt="Fatima Baide">
+                    <span>Fatima Baide</span>
+                </div>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="salvador-de-honduras">
+            </div>
+        </div>
+
+        <div class="candidato">
+            <h3>Liberal</h3>
+            <img src="../static/images/yani-rosenthal.png" alt="Yani Rosenthal">
+            <h4>Yani Rosenthal</h4>
+            <div class="sub-candidatos">
+                <div class="sub-candidato">
+                    <img src="../static/images/kritza-perez.png" alt="Kritza Pérez">
+                    <span>Kritza Pérez</span>
+                </div>
+                <div class="sub-candidato">
+                    <img src="../static/images/erika-urtecho.png" alt="Erika Urtecho">
+                    <span>Erick Urtecho</span>
+                </div>
+                <div class="sub-candidato">
+                    <img src="../static/images/yuri-sabas.png" alt="Yuri Sabas">
+                    <span>Yuri Sabas</span>
+                </div>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="liberal">
+            </div>
+        </div>
+    </div>
+
+
+    <center>
+        <a href="./votado.html" class="votar">Votar</a>
+    </center>
+
+
+</body>
+
+</html>

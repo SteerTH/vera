@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.header {
+    background-color:#5BCFDE;
+    color: white;
+    padding: 0 0 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile img {
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.user-info span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.user-info .id {
+    font-size: 14px;
+    color: black;
+    text-align: center;
+}
+
+.candidatos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+}
+
+.candidato {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    flex: 1 1 200px;
+    max-width: 240px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h3 {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.candidato h3, .candidato h4 {
+    background-color: #d3d3d3;
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.candidato img {
+    width: 240px;
+    height: 200px;
+    object-fit: cover;
+
+  }
+.sub-candidatos {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.sub-candidato {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    border-right: 1px solid #ccc;
+}
+
+.sub-candidato:last-child {
+    border-right: none; 
+}
+
+.sub-candidato img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.checkbox {
+    margin: 10px 0;
+}
+
+.votar{
+    text-decoration: none;
+    font-size: 2rem;
+    background: #5BCFDE;
+    padding: 15px 50px;
+    border-radius: 5px;
+    margin: 40px 0px 0px 0px;
+    color: white;
+    display: block;
+    width: 100px;
+    margin: auto;
+    transition: all .2s;
+}
+
+.votar:hover{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
