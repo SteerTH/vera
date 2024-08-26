@@ -1,2 +1,0 @@
-# vera
-proyecto de feria
